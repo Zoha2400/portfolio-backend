@@ -87,7 +87,7 @@ bot.on('message', async (msg) => {
 
     case "/test":
     case `/test${TAG}`:
-      await bot.sendMessage(chatId, `Тестовое сообщение от ${nameOfUser} в чате "${chatTitle}, код 200. Все работает"`);
+      await bot.sendMessage(chatId, `Тестовое сообщение от ${nameOfUser} в чате "${chatTitle}", код 200. Все работает`);
       break;
 
     default:
