@@ -84,6 +84,13 @@ bot.on('message', async (msg) => {
     case `/waifu${TAG}`:
       await bot.sendPhoto(chatId, 'https://i.waifu.pics/Tj6Wzwo.png', { caption: "Вот ваше изображение!" });
       break;
+
+    case "/test":
+    case `/test${TAG}`:
+      await bot.sendMessage(chatId, `Тестовое сообщение от ${nameOfUser} в чате "${chatTitle}, код 200. Все работает"`);
+      break;
+
+    default:
   }
 });
 
