@@ -19,7 +19,10 @@ bot.setMyCommands([
   { command: "/waifu", description: "Рандомная тянка" },
 ]);
 
-// Функция для обработки поиска персонажей по запросу
+
+
+
+
 bot.onText(/\/find (.+)/, async (msg, match) => {
   const chatId = msg.chat.id;
   const query = match[1]; // Получаем текст после команды /find
@@ -28,18 +31,26 @@ bot.onText(/\/find (.+)/, async (msg, match) => {
     const response = await fetch('https://api.jikan.moe/v4/characters?q=' + query);
     const data = await response.json();
 
-    // if (data.data && data.length > 0) {
+    if (data.data && data.data.length > 0) {
       const character = data.data[0]; // Берем первый результат
-      await bot.sendPhoto(chatId, character.images.jpg.image_url, { caption: character.about || 'Описание отсутствует' });
-    // }
-    // else {
-    //   await bot.sendMessage(chatId, 'Ничего не найдено.');
-    // }
+      const caption = character.about || 'Описание отсутствует';
+
+      // Ограничиваем длину текста до 1024 символов
+      const truncatedCaption = caption.length > 1024 ? caption.slice(0, 1021) + '...' : caption;
+
+      await bot.sendPhoto(chatId, character.images.jpg.image_url, { caption: truncatedCaption });
+    } else {
+      await bot.sendMessage(chatId, 'Ничего не найдено.');
+    }
   } catch (error) {
     console.error(error);
     await bot.sendMessage(chatId, 'Произошла ошибка при поиске.');
   }
 });
+
+
+
+
 
 // Основной обработчик команд
 bot.on('message', async (msg) => {
