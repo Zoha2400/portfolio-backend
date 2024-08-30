@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/get_posts', (req, res) => {
-    res.json(['hello', 'da'])
+    res.json({data : ['hello', 'da']})
 })
 
 
