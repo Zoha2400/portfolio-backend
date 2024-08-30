@@ -3,6 +3,7 @@ import express from 'express';
 import TelegramBot from 'node-telegram-bot-api';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
+import pg from 'pg';
 
 dotenv.config();
 
@@ -13,40 +14,8 @@ const TAG = '@waifu_mz_bot';
 const bot = new TelegramBot(TOKEN, { polling: true });
 
 bot.setMyCommands([
-    { command: "/start", description: "Запустить бота" },
+    { command: "/start", description: "It's not for you" },
 ]);
-
-
-
-
-
-bot.onText(/\/find (.+)/, async (msg, match) => {
-    const chatId = msg.chat.id;
-    const query = match[1]; // Получаем текст после команды /find
-
-    try {
-        const response = await fetch('https://api.jikan.moe/v4/characters?q=' + query);
-        const data = await response.json();
-
-        if (data.data && data.data.length > 0) {
-            const character = data.data[0]; // Берем первый результат
-            const caption = character.about || 'Описание отсутствует';
-
-            // Ограничиваем длину текста до 1024 символов
-            const truncatedCaption = caption.length > 1024 ? caption.slice(0, 1021) + '...' : caption;
-
-            await bot.sendPhoto(chatId, character.images.jpg.image_url, { caption: truncatedCaption });
-        } else {
-            await bot.sendMessage(chatId, 'Ничего не найдено.');
-        }
-    } catch (error) {
-        console.error(error);
-        await bot.sendMessage(chatId, 'Произошла ошибка при поиске.');
-    }
-});
-
-
-
 
 
 bot.on('message', async (msg) => {
@@ -55,7 +24,7 @@ bot.on('message', async (msg) => {
     const text = msg.text;
     const nameOfUser = msg.from.first_name || 'пользователь';
 
-    if(chatId != DEFAULT_CHAT_ID){
+    if(chatId !== DEFAULT_CHAT_ID){
         await bot.sendMessage(chatId, 'I already have my boss! His tech channel - @hoichannel');
     }else{
         switch (text) {
@@ -65,7 +34,6 @@ bot.on('message', async (msg) => {
                 break;
         }
     }
-
 });
 
 
