@@ -1,5 +1,5 @@
 {
-  "name": "waifu-telegram-bot",
+  "name": "portfolio-backend",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,20 @@
     "node-fetch": "^3.3.2",
     "node-telegram-bot-api": "^0.66.0",
     "nodemon": "^3.1.4",
+    "pg": "^8.12.0",
     "pug": "2.0.0-beta11"
   },
-  "type": "module"
+  "type": "module",
+  "description": "My personal backend ",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zoha2400/resume_service_portfolio.git"
+  },
+  "author": "Zohs2400",
+  "license": "MIT ",
+  "bugs": {
+    "url": "https://github.com/Zoha2400/resume_service_portfolio/issues"
+  },
+  "homepage": "https://github.com/Zoha2400/resume_service_portfolio#readme"
 }
