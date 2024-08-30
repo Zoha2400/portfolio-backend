@@ -43,8 +43,6 @@ bot.on('message', async (msg) => {
 });
 
 
-
-
 app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
@@ -52,6 +50,7 @@ app.get('/', (req, res) => {
 app.get('/get_posts', (req, res) => {
     res.json({data : ['hello', 'da']})
 })
+
 
 
 app.listen(3001, () => {
