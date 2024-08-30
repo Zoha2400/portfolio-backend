@@ -52,7 +52,6 @@ bot.onText(/\/find (.+)/, async (msg, match) => {
 
 
 
-// Основной обработчик команд
 bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
   const chatTitle = msg.chat.title || '';
@@ -87,10 +86,13 @@ bot.on('message', async (msg) => {
 
     case "/test":
     case `/test${TAG}`:
-      await bot.sendMessage(chatId, `Тестовое сообщение от ${nameOfUser} в чате "${chatTitle}", код 200. Все работает`);
+      await bot.sendMessage(chatId, `Тестовое сообщение от ${nameOfUser} в чате "${chatTitle}"c, код 200. Все работает`);
       break;
-
-    default:
+    case "/free_waifu":
+      await bot.sendPhoto(chatId, 'https://ru-static.z-dn.net/files/d97/d20973ca0c15d727068c9749e5921fb3.jpg', {caption: "Решите пример, чтобы получить вайфу"})
+    case "/maddison_bir":
+      await bot.sendPhoto(chatId, 'https://images2.imgbox.com/6c/58/jH1DWV20_o.jpg', {caption: "Маддисон Бир для Коли (не дрочи гооол)"})
+      break;
   }
 });
 
