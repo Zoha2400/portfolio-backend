@@ -4,6 +4,12 @@ import TelegramBot from 'node-telegram-bot-api';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
 import pg from 'pg';
+import cors from 'cors'
+
+const app = express();
+
+app.use(cors());
+
 
 dotenv.config();
 
@@ -37,11 +43,14 @@ bot.on('message', async (msg) => {
 });
 
 
-const app = express();
-
 app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
+
+app.get('/get_posts', (req, res) => {
+    res.json({data : ['hello', 'da']})
+})
+
 
 
 app.listen(3001, () => {
